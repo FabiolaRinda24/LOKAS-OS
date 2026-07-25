@@ -1,0 +1,139 @@
+# LOKA DATABASE SCHEMA
+
+## Overview
+
+Database LOKA dirancang menggunakan PostgreSQL dengan struktur yang sederhana, scalable, dan mudah dikembangkan.
+
+---
+
+# Table: users
+
+| Column | Type |
+|----------|---------|
+| id | UUID |
+| full_name | VARCHAR |
+| email | VARCHAR |
+| password_hash | TEXT |
+| provider | VARCHAR |
+| created_at | TIMESTAMP |
+
+---
+
+# Table: trips
+
+| Column | Type |
+|----------|---------|
+| id | UUID |
+| user_id | UUID |
+| origin_city | VARCHAR |
+| destination_city | VARCHAR |
+| departure_date | DATE |
+| return_date | DATE |
+| passengers | INTEGER |
+| budget | DECIMAL |
+| travel_style | VARCHAR |
+| created_at | TIMESTAMP |
+
+---
+
+# Table: itineraries
+
+| Column | Type |
+|----------|---------|
+| id | UUID |
+| trip_id | UUID |
+| day_number | INTEGER |
+| activity | TEXT |
+| location | VARCHAR |
+| estimated_cost | DECIMAL |
+| start_time | TIME |
+| end_time | TIME |
+
+---
+
+# Table: budgets
+
+| Column | Type |
+|----------|---------|
+| id | UUID |
+| trip_id | UUID |
+| ticket_cost | DECIMAL |
+| hotel_cost | DECIMAL |
+| transport_cost | DECIMAL |
+| food_cost | DECIMAL |
+| attraction_cost | DECIMAL |
+| shopping_cost | DECIMAL |
+| emergency_cost | DECIMAL |
+| total_cost | DECIMAL |
+
+---
+
+# Table: ai_chat_history
+
+| Column | Type |
+|----------|---------|
+| id | UUID |
+| user_id | UUID |
+| trip_id | UUID |
+| role | VARCHAR |
+| message | TEXT |
+| created_at | TIMESTAMP |
+
+---
+
+# Table: reminders
+
+| Column | Type |
+|----------|---------|
+| id | UUID |
+| trip_id | UUID |
+| reminder_type | VARCHAR |
+| reminder_time | TIMESTAMP |
+| status | VARCHAR |
+
+---
+
+# Entity Relationship
+
+users
+
+↓
+
+trips
+
+↓
+
+itineraries
+
+↓
+
+budgets
+
+↓
+
+reminders
+
+users
+
+↓
+
+ai_chat_history
+
+---
+
+# Future Tables
+
+- hotels
+- tourist_destinations
+- restaurants
+- train_stations
+- weather
+- ticket_prices
+- ai_memory
+- notifications
+
+---
+
+# Database Version
+
+v1.0 MVP
